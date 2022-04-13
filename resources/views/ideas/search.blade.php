@@ -22,56 +22,17 @@
             <div style="padding: 10px 0px 0px 0px;">
                 <label for="selectFilter" class="form-label">Filter:</label>
                 <select class="form-select" id="selectFilter" name="filter" value="{{ request()->get('filter') }}">
-                    @switch($request->filter)
-                    @case('views')
-                    <option value="views" selected>Descending views</option>
-                    <option value="likes">Descending likes</option>
-                    <option value="dislikes">Descending dislikes</option>
-                    <option value="comments">Descending comments</option>
-                    <option value="recently">Descending recently</option>
-                    <option value="none">None</option>
-                    @break
-                    @case('likes')
-                    <option value="views">Descending views</option>
-                    <option value="likes" selected>Descending likes</option>
-                    <option value="dislikes">Descending dislikes</option>
-                    <option value="comments">Descending comments</option>
-                    <option value="recently">Descending recently</option>
-                    <option value="none">None</option>
-                    @break
-                    @case('dislikes')
-                    <option value="views">Descending views</option>
-                    <option value="likes">Descending likes</option>
-                    <option value="dislikes" selected>Descending dislikes</option>
-                    <option value="comments">Descending comments</option>
-                    <option value="recently">Descending recently</option>
-                    <option value="none">None</option>
-                    @break
-                    @case('comments')
-                    <option value="views">Descending views</option>
-                    <option value="likes">Descending likes</option>
-                    <option value="dislikes">Descending dislikes</option>
-                    <option value="comments" selected>Descending comments</option>
-                    <option value="recently">Descending recently</option>
-                    <option value="none">None</option>
-                    @break
-                    @case('recently')
-                    <option value="views">Descending views</option>
-                    <option value="likes">Descending likes</option>
-                    <option value="dislikes">Descending dislikes</option>
-                    <option value="comments">Descending comments</option>
-                    <option value="recently" selected>Descending recently</option>
-                    <option value="none">None</option>
-                    @break
-                    @default
-                    @case('none')
-                    <option value="views">Descending views</option>
-                    <option value="likes">Descending likes</option>
-                    <option value="dislikes">Descending dislikes</option>
-                    <option value="comments">Descending comments</option>
-                    <option value="recently">Descending recently</option>
-                    <option value="none" selected>None</option>
-                    @endswitch
+                    <option value="none" {{($request->filter == "none") ? "selected" : ""}}>None</option>
+                    <option value="views" {{($request->filter == "views") ? "selected" : ""}}>Views (Decreased)</option>
+                    <option value="likes" {{($request->filter == "likes") ? "selected" : ""}}>Likes (Decreased)</option>
+                    <option value="dislikes" {{($request->filter == "dislikes") ? "selected" : ""}}>Dislikes (Decreased)</option>
+                    <option value="comments" {{($request->filter == "comments") ? "selected" : ""}}>Comments (Decreased)</option>
+                    <option value="recently" {{($request->filter == "recently") ? "selected" : ""}}>Created time (Decreased)</option>
+                    <option value="views_asc" {{($request->filter == "views_asc") ? "selected" : ""}}>Views (Increased)</option>
+                    <option value="likes_asc" {{($request->filter == "likes_asc") ? "selected" : ""}}>Likes (Increased)</option>
+                    <option value="dislikes_asc" {{($request->filter == "dislikes_asc") ? "selected" : ""}}>Dislikes (Increased)</option>
+                    <option value="comments_asc" {{($request->filter == "comments_asc") ? "selected" : ""}}>Comments (Increased)</option>
+                    <option value="recently_asc" {{($request->filter == "recently_asc") ? "selected" : ""}}>Created time (Increased)</option>
                 </select>
             </div>
             <div style="padding: 15px 0px 0px 0px;">

@@ -48,15 +48,14 @@ class IdeaController extends Controller
         $selected_mission_id = $request->mission_id;
         if ($selected_mission_id != 0) {
             $ideas = Idea::query()
-            ->where('mission_id', $selected_mission_id)
-            ->where(function($query) use ($user_input) {
-                $query->where('title', 'LIKE', "%{$user_input}%")->orWhere('content', 'LIKE', "%{$user_input}%");
-            });
-        }
-        else {
+                ->where('mission_id', $selected_mission_id)
+                ->where(function ($query) use ($user_input) {
+                    $query->where('title', 'LIKE', "%{$user_input}%")->orWhere('content', 'LIKE', "%{$user_input}%");
+                });
+        } else {
             $ideas = Idea::query()
-            ->where('title', 'LIKE', "%{$user_input}%")
-            ->orWhere('content', 'LIKE', "%{$user_input}%");
+                ->where('title', 'LIKE', "%{$user_input}%")
+                ->orWhere('content', 'LIKE', "%{$user_input}%");
         }
         //Search by condition:
         $selected_filter = $request->filter;
@@ -68,6 +67,12 @@ class IdeaController extends Controller
                     ->orderBy('reaction_like_count', 'desc')
                     ->paginate(4);
                 break;
+            case "likes_asc":
+                $ideas = $ideas
+                    ->joinReactionCounterOfType('Like')
+                    ->orderBy('reaction_like_count', 'asc')
+                    ->paginate(4);
+                break;
                 //Search ideas with order by number of dislikes
             case "dislikes":
                 $ideas = $ideas
@@ -75,22 +80,37 @@ class IdeaController extends Controller
                     ->orderBy('reaction_dislike_count', 'desc')
                     ->paginate(4);
                 break;
+            case "dislikes_asc":
+                $ideas = $ideas
+                    ->joinReactionCounterOfType('Dislike')
+                    ->orderBy('reaction_dislike_count', 'asc')
+                    ->paginate(4);
+                break;
                 //Search ideas with order by number of views
             case "views":
                 $ideas = $ideas->orderBy('view_count', 'desc')->paginate(4);
+                break;
+            case "views_asc":
+                $ideas = $ideas->orderBy('view_count', 'asc')->paginate(4);
                 break;
                 //Search ideas with order by comments
             case "comments":
                 $ideas = $ideas->withCount('comments')->orderBy('comments_count', 'desc')->paginate(4);
                 break;
+            case "comments_asc":
+                $ideas = $ideas->withCount('comments')->orderBy('comments_count', 'asc')->paginate(4);
+                break;
                 //Search ideas with order by posted time
             case "recently":
                 $ideas = $ideas->withCount('comments')->orderBy('created_at', 'desc')->paginate(4);
                 break;
+            case "recently_asc":
+                $ideas = $ideas->withCount('comments')->orderBy('created_at', 'asc')->paginate(4);
+                break;
             default:
                 $ideas = $ideas->withCount('comments')->paginate(4);
                 break;
-        }        
+        }
         return view(
             'ideas.index',
             compact(['missions', 'ideas', 'all_missions', 'request'])
@@ -190,7 +210,7 @@ class IdeaController extends Controller
     {
         $attached_file = Attachment::find($id);
         $directory = $attached_file->direction;
-        Storage::delete($directory); 
+        Storage::delete($directory);
         $attached_file->delete();
         return redirect()->back()->with(['class' => 'success', 'message' => 'File is deleted']);
     }

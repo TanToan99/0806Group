@@ -121,10 +121,10 @@
     <div class="column">
       <div class="card border-success">
         <div class="container ">
-          <img src="{{asset('/images/hiep_duc.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-          <h2 class="h2">Hiep Duc</h2>
+          <img src="{{asset('/images/khoi_nguyen.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h2 class="h2">Tan Khoi</h2>
           <p class="title">Developer</p>
-          <p class="text">ducphgcd191221@fpt.edu.vn</p>
+          <p class="text">khointgcd191160@fpt.edu.vn</p>
         </div>
       </div>
     </div>
@@ -138,23 +138,6 @@
           <p class="text">huynvgcd191294@fpt.edu.vn</p>
         </div>
       </div>
-    </div>
-
-    <div class="column">
-    </div>
-
-    <div class="column">
-      <div class="card border-danger">
-        <div class="container">
-          <img src="{{asset('/images/khoi_nguyen.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-          <h2 class="h2">Tan Khoi</h2>
-          <p class="title">Developer</p>
-          <p class="text">khointgcd191160@fpt.edu.vn</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="column">
     </div>
   </div>
 
