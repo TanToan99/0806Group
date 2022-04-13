@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-10">
                     <div class="form-group @error('name') is-invalid @enderror">
-                        <input type="text" name="name" placeholder="Name Category" class="form-control" value="{{ $itemSemester->name }}">
+                        <input type="text" name="name" placeholder="Name Semester" class="form-control" value="{{ $itemSemester->name }}">
                     </div>
                     @if ($errors->has('name'))
                     <span>

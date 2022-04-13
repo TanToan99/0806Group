@@ -14,6 +14,6 @@ class Contact extends Model
         'email',
         'subject',
         'phone_number',
-        'message'
+        'user_message'
     ];
 }

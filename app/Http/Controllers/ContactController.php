@@ -20,7 +20,7 @@ class ContactController extends Controller
             'email' => $request->email,
             'subject' => $request->subject,
             'phone_number' => $request->phone_number,
-            'message' => $request->message,
+            'user_message' => $request->user_message,
         ]);
         $admin_role_id = Role::where('name', 'admin')->first()->id;
         $receivers = User::where('role_id',$admin_role_id)->get();

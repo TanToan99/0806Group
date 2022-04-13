@@ -79,7 +79,7 @@
         <div class="container">
           <img src="{{asset('/images/thien_vuong.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
           <h2 class="h2">Truc Phuong</h2>
-          <p class="title">Leader</p>
+          <p class="title">Product Owner</p>
           <p class="text">phuonglvtgcd191122@fpt.edu.vn</p>
         </div>
       </div>
@@ -90,7 +90,7 @@
         <div class="container">
           <img src="{{asset('/images/tan_toan.jpeg')}}" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
           <h2 class="h2">Tan Toan</h2>
-          <p class="title">Developer</p>
+          <p class="title">Scrum Master</p>
           <p class="text">toanlntgcd191338@fpt.edu.vn</p>
         </div>
       </div>

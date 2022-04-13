@@ -132,7 +132,7 @@
                 <div class="form-icon">
                     <span><i class="icon icon-user"></i></span>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-15">
                     <div class="form-group @error('name') is-invalid @enderror">
                         <label for="name">Mission Name:</label>
                         <input type="text" class="form-control item" name="name" id="name" placeholder="Full Name" value="{{$mission-> name}}">
@@ -145,7 +145,7 @@
                     </span>
                     @endif
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-15">
                     <div class="form-group @error('description') is-invalid @enderror">
                         <label for="description">Description:</label>
                         <input type="text" name="description" class="form-control" id="description" placeholder="" value="{{$mission->description}}">
@@ -158,7 +158,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-15">
                     <div class="form-group">
                         <label for="end_at">End At:</label>
                         <input type="datetime-local" name="end_at" class="form-control" id="end_at" placeholder="" value="{{ date('Y-m-d\Th:m:s',strtotime($mission->end_at)) }}">
@@ -171,6 +171,7 @@
                     </span>
                     @endif
                 </div>
+                <div class="col-lg-15">
                 <div class="form-group">
                     <label for="department_id">Department:</label>
                     <select class="form-control" name="department_id" id="department_id">
@@ -179,14 +180,17 @@
                         @endforeach
                     </select>
                 </div>
+                </div>
+                <div class="col-lg-15">
                 <div class="form-group">
                     <label for="semester_id">Semester:</label>
                     <select class="form-control" name="semester_id" id="semester_id">
                         @foreach ($semester as $smt)
-                        <option value="{{ $smt->id }}">{{ $smt->name }}</option>
+                        <option value="{{ $smt->id }}">{{ $smt->name }} - Deadline: {{$smt->end_day}}</option>
                         @endforeach
                     </select>
                 </div>
+            </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Edit Mission</button>
                 </div>

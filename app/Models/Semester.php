@@ -10,6 +10,7 @@ class Semester extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'end_day'
     ];
     
     protected $dates = [

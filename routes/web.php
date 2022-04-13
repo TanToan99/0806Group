@@ -123,8 +123,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Comment Admin
         Route::group(['prefix' => 'comments', 'middleware' => 'role:admin,manager'],function(){
-            Route::get('/listComment/{id}',[CommentController::class,'listCommentByIdea'])->name('admin.comments.listComment.index');
-            Route::get('/listComment/{id}/dt-row-data',[CommentController::class,'getDtRowDataByIdea']);
+            Route::get('/listComment/{id}',[ComentController::class,'listCommentByIdea'])->name('admin.comments.listComment.index');
+            Route::get('/listComment/{id}/dt-row-data',[ComentController::class,'getDtRowDataByIdea']);
         });
 
         //Mission

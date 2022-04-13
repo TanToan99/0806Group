@@ -19,10 +19,9 @@
             <div class="card h-100 border-light">
             <img class="card-img-top" src="https://media-exp1.licdn.com/dms/image/C4D16AQFi_ge0eaXLXA/profile-displaybackgroundimage-shrink_200_800/0/1621947470738?e=1649894400&v=beta&t=_dIkTACPLTPu6qF-iA-az61KJbAAjjxJkpvnqo2vUBQ" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text h6" style="text-indent: 50px; font-family: Tahoma, sans-serif;">The University of Greenwich
-            is well-known for its high teaching quality, research excellence,
-            the diversity of its students, its beautiful, historic campuses in south-east
-            London and Kent and its high student satisfaction.</p>
+                    <p class="card-text h6" style="text-indent: 50px; font-family: Tahoma, sans-serif;">Located in southeast London and Kent, 
+                    Greenwich University is not only famous for its outstanding teaching quality, research brilliance, 
+                    student diversity, and historic campuses, but also for the high satisfaction of students. </p>
                 </div>
             </div>
         </div>
@@ -34,8 +33,9 @@
             <img class="card-img-top" src="https://www.gre.ac.uk/__data/assets/image/0017/6155/varieties/v800.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title h4">Undergraduate study</h2>
-                    <p class="card-text">Study for an undergraduate degree at the University of Greenwich.
-                        Find your ideal course from a selection of over 200 and discover more about the student experience.</p>
+                    <p class="card-text">At the University of Greenwich, students can pursue an undergraduate degree. In fact, 
+                        there are over 200 options for people who want to find the perfect course and as well as 
+                        learn more about the student experience. </p>
                 </div>
             </div>
         </div>
@@ -43,10 +43,10 @@
             <div class="card h-100 border-warning">
             <img class="card-img-top" src="https://www.gre.ac.uk/__data/assets/image/0008/120041/varieties/v800.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title h4">International study</h2>
-                    <p class="card-text">Most of our postgraduate courses offer flexible learning options
-                        such as distance learning or part-time study.
-                        Find your ideal course and discover our facilities and subject experts.</p>
+                    <h2 class="card-title h4">Postgraduate study</h2>
+                    <p class="card-text">The majority of its postgraduate programs provide a variety of learning choices, including distance learning and part-time study. 
+                        In case people search for the perfect course, facilities and subjects of 
+                        Greenwich University specialists could be discovered. </p>
                 </div>
             </div>
         </div>
@@ -54,9 +54,9 @@
             <div class="card h-100 border-success">
             <img class="card-img-top" src="https://www.gre.ac.uk/__data/assets/image/0015/6504/varieties/v800.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title h4">Undergraduate study</h2>
-                    <p class="card-text">We offer a wide variety of courses and ways to study for those coming from abroad.
-                        If you are an international student looking to continue your education in the UK then we can help you.</p>
+                    <h2 class="card-title h4">International study</h2>
+                    <p class="card-text">For international students, the University of Greenwich offers a wide range of courses and study options. 
+                        Moreover, those who intend to continue their education in the United Kingdom can be assisted.</p>
                 </div>
             </div>
         </div>

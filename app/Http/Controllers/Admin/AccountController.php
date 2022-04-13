@@ -14,6 +14,7 @@ use App\Jobs\SendEmailCreateAccount;
 use Illuminate\Support\Str;
 use Session;
 use App\Http\Requests\AccountRequest;
+use DB;
 
 class AccountController extends Controller
 {
@@ -63,7 +64,8 @@ class AccountController extends Controller
                         $res .=  '<a class="btn btn-info btn-sm rounded-pill" href="' . route("admin.account.ban", ['id' => $data->id, 'status_code' => 0]) . '"><i class="fas fa-user-lock" title="Lock account"></i></a>';
                     else
                         $res .=  '<a class="btn btn-primary btn-sm rounded-pill" href="' . route("admin.account.ban", ['id' => $data->id, 'status_code' => 1]) . '"><i class="fas fa-lock-open" title="Unlock Account"></i></a>';
-                }
+                    }
+                
                 if (auth()->user()->hasRole(Role::ROLE_ADMIN)) {
                     $res .= ' <a class="btn btn-warning btn-sm rounded-pill" href="' . route("admin.account.update", $data->id) . '"><i class="fa-solid fa-pen-to-square" title="Edit Account"></i></a>
                         <form method="POST" action="' . route('admin.account.delete', $data->id) . '" accept-charset="UTF-8" style="display:inline-block">
@@ -170,13 +172,18 @@ class AccountController extends Controller
         $user = User::whereId($id)->first();
         if(auth()->user()->id == $id || $user->role_id != Role::where('name',Role::ROLE_STAFF)->first()->id)
             return redirect()->route('admin.account.index')->with('success', 'You can not ban this person');
-        $ban_account = $user->update([
+        $user->update([
             'is_lock' => $status_code
         ]);
+        $ban_account = DB::table('users')->select('is_lock')->where('id', $user->id)->value('is_lock');
+        //$ban_account = User::whereId($id)->get('is_lock');
         if ($ban_account == 1) {
-            return redirect()->route('admin.account.index')->with('success', 'Account is banned successfully');
+            return redirect()->route('admin.account.index')->with('success', 'Account is unclocked successfully');
         }
-        return redirect()->route('admin.account.index')->with('error', 'Fail to ban account');
+        elseif ($ban_account == 0) {
+            return redirect()->route('admin.account.index')->with('success', 'Account is locked successfully');
+        }
+            return redirect()->route('admin.account.index')->with('error', 'Fail to ban account');
     }
 
     private function generateRandomString($length = 20)

@@ -43,15 +43,15 @@
                         @enderror
                     </div>
                     <div class="col-md-12" style="padding: 10px;">
-                        <textarea rows="6" class="form-control @error('message') is-invalid @enderror" placeholder="Please send us a message..." name="message"></textarea>
-                        @error('message')
+                        <textarea rows="6" class="form-control @error('user_message') is-invalid @enderror" placeholder="Please send us a message..." name="user_message"></textarea>
+                        @error('user_message')
                         <span class="invalid-feedback d-flex justify-content-left" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
                     <div class="update ml-auto mr-auto" style="padding: 10px;">
-                        <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                        <button type="submit" class="btn btn-success btn-round">Submit</button>
                     </div>
                 </div>
             </form>
