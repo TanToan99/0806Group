@@ -15,7 +15,7 @@ class DepartmentController extends Controller
     {
 
         $itemDepartment = Department::all();
-        return view('admin.department.indexDepartment', compact('itemDepartment'));
+        return view('admin.Department.indexDepartment', compact('itemDepartment'));
     }
 
     public function getDtRowData(Request $request)

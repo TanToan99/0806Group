@@ -43,6 +43,9 @@ class IdeasController extends Controller
             ->editColumn('dislike', function($data){
                 return $data->getLoveReactant()->getReactionCounterOfType(ReactionType::fromName('Dislike'))->getCount();
             })
+            ->editColumn('comments', function ($data) {
+                return $data->comments->count();
+            })
             ->rawColumns(['title'])
             ->make(true);
     }

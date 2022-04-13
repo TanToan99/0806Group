@@ -67,7 +67,7 @@ class SemesterController extends Controller
         //todo: Add create semester request
         Semester::create($request->all());
         //send mail
-        return redirect()->back()->with('success', 'Create Semester Successfully!');
+        return redirect()->back()->with('success', 'Create semester Successfully!');
     }
     public function edit($id){
         $itemSemester = Semester::findOrFail($id);

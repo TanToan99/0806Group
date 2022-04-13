@@ -45,6 +45,9 @@ class MissionController extends Controller
             ->editColumn('semester', function ($data) {
                 return $data->semester->name;
             })
+            ->editColumn('ideas',function($data){
+                return $data->ideas->count();
+            })
             ->editColumn('action', function ($data) {
                 if (auth()->user()->hasRole(Role::ROLE_QA_Manager)) return '';
                 return '
@@ -85,23 +88,25 @@ class MissionController extends Controller
     public function edit($id)
     {
         $mission = Mission::findOrFail($id);
-        $department = Department::all();
+        // $department = Department::all();
         $semester = Semester::all();
-        return view('admin.missions.editMission', compact('mission', 'department', 'semester'));
+        return view('admin.missions.editMission', compact('mission', 'semester'));
     }
 
     public function update(UpdateMission $request, $id)
     {
-        $mission = Mission::find($id);
+        $mission = Mission::findOrFail($id);
         $name = $request->name;
         $description = $request->description;
         $end_at = $request->end_at;
-        $semester_id = $request->semester_id;
+        $semester_end_day = $mission->semester->end_day;
+        if(strtotime($end_at) > strtotime($semester_end_day)){
+            return redirect()->back()->with('danger', 'End day of mission must not exeed end day of semester');
+        }
         $data = [
             'name' => $name,
             'description' => $description,
             'end_at' => $end_at,
-            'semester_id' => $semester_id,
         ];
         $mission->update($data);
         $mission->save();

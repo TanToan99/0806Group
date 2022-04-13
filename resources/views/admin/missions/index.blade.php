@@ -96,7 +96,9 @@
                         <label for="semester">Semester:</label>
                         <select class="form-control" name="semester" id="semester">
                             @foreach ($semester as $smt)
+                            @if($smt->end_day > now())
                             <option value="{{ $smt->id }}">{{ $smt->name }} - Deadline: {{$smt->end_day}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -145,6 +147,10 @@
                 {
                     data: 'semester',
                     name: 'semester'
+                },
+                {
+                    data: 'ideas',
+                    name: 'ideas'
                 },
                 {
                     data: 'action',

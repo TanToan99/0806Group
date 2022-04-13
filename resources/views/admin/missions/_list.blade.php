@@ -5,6 +5,7 @@
             <th class="col-1">Description</th>
             <th class="col-1">Deadline</th>
             <th class="col-1">Semester</th>
+            <th class="col-1">Ideas</th>
             <th class="col-1">Action</th>
         </tr>
     </thead>

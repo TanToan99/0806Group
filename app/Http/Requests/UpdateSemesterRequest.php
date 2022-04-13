@@ -25,7 +25,7 @@ class UpdateSemesterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'end_day' => 'required',
+            'end_day' => 'required|after_or_equal:'.now(),
         ];
     }
 
@@ -34,7 +34,9 @@ class UpdateSemesterRequest extends FormRequest
         return [
             'name.required' => 'The name semester is required',
             'end_day.required' =>'The deadline is required',
-            'name.max' => 'The name semester is too long, please try again'
+            'name.max' => 'The name semester is too long, please try again',
+            'end_day.after_or_equal' => 'End date must not exceed the current date time',
+
         ];        
     }
 }

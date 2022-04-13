@@ -124,7 +124,13 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
+        @if (session('danger'))
+        <div class="alert alert-danger">
+            {{ session('danger') }}
+        </div>
+        @endif
     </div>
+
     <div class="container">
         <form action="/admin/mission/update/{{ $mission->id }}" method="post">
             @csrf
@@ -171,7 +177,7 @@
                     </span>
                     @endif
                 </div>
-                <div class="col-lg-15">
+                {{-- <div class="col-lg-15">
                 <div class="form-group">
                     <label for="department_id">Department:</label>
                     <select class="form-control" name="department_id" id="department_id">
@@ -180,15 +186,14 @@
                         @endforeach
                     </select>
                 </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-15">
                 <div class="form-group">
                     <label for="semester_id">Semester:</label>
-                    <select class="form-control" name="semester_id" id="semester_id">
-                        @foreach ($semester as $smt)
+                    <input type="text" value="{{$mission->semester->name}} (End at: {{$mission->semester->end_day}})" class="form-control" name="semester_id" id="semester_id" readonly>
+                        {{-- @foreach ($semester as $smt)
                         <option value="{{ $smt->id }}">{{ $smt->name }} - Deadline: {{$smt->end_day}}</option>
-                        @endforeach
-                    </select>
+                        @endforeach --}}
                 </div>
             </div>
                 <div class="form-group">

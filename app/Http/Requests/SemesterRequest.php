@@ -15,7 +15,6 @@ class SemesterRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +24,7 @@ class SemesterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:semesters|max:255',
-            'end_day' => 'required',
+            'end_day' => 'required|after_or_equal:'.now(),
         ];
     }
 
@@ -35,7 +34,8 @@ class SemesterRequest extends FormRequest
             'name.required' => 'The name semester is required',
             'name.unique' => 'The name semester is already',
             'end_day.required' =>'The deadline is required',
-            'name.max' => 'The name semester is too long, please try again'
+            'name.max' => 'The name semester is too long, please try again',
+            'end_day.after_or_equal' => 'End date must not exceed the current date time',
         ];        
     }
 }
