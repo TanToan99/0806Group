@@ -20,9 +20,14 @@ class Department extends Model
     // {
     //     return $this->hasMany(Mission::class);
     // }
-    
+
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function ideas()
+    {
+        return $this->hasManyThrough(Idea::class, User::class);
     }
 }

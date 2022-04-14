@@ -22,5 +22,9 @@ class Semester extends Model
     {
         return $this->hasMany(Mission::class);
     }
-    
+
+    public function ideas()
+    {
+        return $this->hasManyThrough(Idea::class, Mission::class);
+    }
 }

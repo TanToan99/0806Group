@@ -62,12 +62,12 @@ class User extends Authenticatable implements ReacterableInterface
 
     public function ideas()
     {
-        return $this->belongsToMany(Idea::class);
+        return $this->hasMany(Idea::class);
     }
 
     public function comments()
     {
-        return $this->belongsToMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function department(): BelongsTo

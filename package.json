@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "chart.js": "^3.7.1",
         "datatables.net": "^1.11.5",
         "datatables.net-dt": "^1.11.5"
     }
