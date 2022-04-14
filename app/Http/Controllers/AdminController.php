@@ -30,10 +30,9 @@ class AdminController extends Controller
 
         $total = $count_academic + $count_support;
         $count_academic_per = $count_academic/$total * 100;
-        $count_support_per = $count_support/$total * 100;
-
-        $count_academic_contribute = User::withCount(['ideas as count_idea'])->withCount(['comments as count_comments'])->having('count_idea','>','0')->orHaving('count_comments','>','0')->where('department_id','=',$academic->id)->get()->count();
-        $count_support_contribute = User::withCount(['ideas as count_idea'])->withCount(['comments as count_comments'])->having('count_idea','>','0')->orHaving('count_comments','>','0')->where('department_id','=',$support->id)->get()->count();
+        $count_support_per = $count_support/$total * 100;   
+        $count_academic_contribute = User::withCount(['ideas'])->withCount(['comments as count_comments'])->where('department_id','=',$academic->id)->get()->filter(function($user) { return ($user->ideas_count > 0 || $user->comments_count > 0); })->count();
+        $count_support_contribute = User::withCount(['ideas'])->withCount(['comments as count_comments'])->where('department_id','=',$support->id)->get()->filter(function($user) { return ($user->ideas_count > 0  || $user->comments_count > 0); })->count();
         return view('admin.dashboard', compact(
             'department',
             'semester',

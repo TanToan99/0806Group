@@ -28,6 +28,10 @@
     <div class="card">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">List Ideas</h6>
+<<<<<<< Updated upstream
+=======
+            <button class="btn btn-primary" href="{{ route('create.zip') }}">Download Attachment</button>
+>>>>>>> Stashed changes
         </div>
     <div class="card-body">
             <table id="users-table" class="table table-responsive" style="width:100%">
