@@ -4,20 +4,24 @@
 
 @section('content')
 @include('_shared._header')
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <div class="card text-white bg-secondary my-5 py-3 text-center">
     <div class="card-body">
-        <p class="text-white m-0" style="font-family: Georgia, serif;">
+        <button type="button" class="btn btn-secondary m-0" data-toggle="collapse" data-target="#demo" style="font-family: Georgia, serif;">
             More information about University of Greenwich
-        </p>
-        <i class="fas fa-arrow-down"></i>
+
+            <i class="fas fa-arrow-down"></i>
+        </button>
     </div>
 </div>
-<div class="container px-4 px-lg-5">
+{{-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button> --}}
+<div class="container collapse px-4 px-lg-5" id="demo">
     <!-- Heading Row-->
     <div class="row align-items-center my-5">
         <div class="mb-5">
             <div class="card h-100 border-light">
-            <img class="card-img-top" src="https://media-exp1.licdn.com/dms/image/C4D16AQFi_ge0eaXLXA/profile-displaybackgroundimage-shrink_200_800/0/1621947470738?e=1649894400&v=beta&t=_dIkTACPLTPu6qF-iA-az61KJbAAjjxJkpvnqo2vUBQ" alt="Card image cap">
+            <img class="card-img-top" src="{{asset('/images/university-of-greenwich.png')}}" alt="Logo of Greenwich University">
                 <div class="card-body">
                     <p class="card-text h6" style="text-indent: 50px; font-family: Tahoma, sans-serif;">Located in southeast London and Kent, 
                     Greenwich University is not only famous for its outstanding teaching quality, research brilliance, 

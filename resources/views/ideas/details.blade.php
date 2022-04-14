@@ -14,7 +14,7 @@
     <div class="idea-block">
         <h4>{{ $idea->title }}
             @if ($idea->user->id == auth()->user()->id)
-            <a class="float-end ms-2 btn"  href="{{ route('ideas.edit', $idea->id) }}"><i class=" fa fa-solid fa-pen-to-square"></i></a>
+            <a class="float-end ms-2 btn" href="{{ route('ideas.edit', $idea->id) }}"><i class=" fa fa-solid fa-pen-to-square"></i></a>
             <form method="post" class="float-end" action="{{route('ideas.delete', $idea->id)}}" style="display: inline;">
                 @method('delete')
                 @csrf
@@ -24,7 +24,7 @@
             </form>
             @endif
         </h4>
-        
+
         <small class="text-muted">
             Post by: {{ auth()->user()->hasRole('staff')? 'Anonymous': $idea->user->name }} -
             {{ $idea->created_at->diffForHumans() }}
@@ -42,27 +42,31 @@
         <hr>
         <h1 class="comments-title">Comments</h1>
         <div class="be-comment mb-4">
-            @if(now() < $current_semester_end_day)
-            <form action="{{ route('ideas.comments.add', $idea->id) }}" method="POST">
+            @if(now() < $current_semester_end_day) <form action="{{ route('ideas.comments.add', $idea->id) }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="text" class="form-control rounded-corner" name="content" placeholder="Write a comment...">
+                    <input type="text" class="form-control rounded-corner @error('content') is-invalid @enderror" name="content" placeholder="Write a comment...">
                     <span class="input-group-btn p-l-10">
                         <button class="btn btn-primary f-s-12 rounded-corner pull-right" type="submit">Submit</button>
                     </span>
-                </div>
-            </form>
-            @else
-            <form action="{{ route('ideas.comments.add',$idea->id) }}" method="POST">
-                @csrf
-                <div class="input-group">
-                    <input type="text" class="form-control rounded-corner" name="content" placeholder="Comment is unvailable" disabled>
-                    <span class="input-group-btn p-l-10">
-                        <button class="btn btn-primary f-s-12 rounded-corner pull-right" type="button">Submit</button>
+                    @error('content')
+                    <span class="invalid-feedback d-flex justify-content-left" role="alert">
+                        <strong>{{ $message }}</strong>
                     </span>
+                    @enderror
                 </div>
-            </form>
-            @endif
+                </form>
+                @else
+                <form action="{{ route('ideas.comments.add',$idea->id) }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control rounded-corner" name="content" placeholder="Comment is unvailable" disabled>
+                        <span class="input-group-btn p-l-10">
+                            <button class="btn btn-primary f-s-12 rounded-corner pull-right" type="button">Submit</button>
+                        </span>
+                    </div>
+                </form>
+                @endif
         </div>
         @foreach ($comments as $comment)
         <div class="comment-block">
@@ -117,4 +121,3 @@
 </script>
 
 @endsection
-

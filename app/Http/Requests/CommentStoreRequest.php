@@ -24,7 +24,15 @@ class CommentStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|string|min:1',
+            'content' => 'required|string',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'content.required' => 'You must input something in the content of the comment.',
+        ];        
+    }
+
 }
