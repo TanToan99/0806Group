@@ -111,7 +111,7 @@ class AccountController extends Controller
             'remember_token' => $token
         ]);
         SendEmailCreateAccount::dispatch($new_user, $password)->delay(now());
-        return redirect()->back()->with('flash_message', 'User created!');
+        return redirect()->back()->with('success', 'User created!');
     }
 
     public function edit($id)

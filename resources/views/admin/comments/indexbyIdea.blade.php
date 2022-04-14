@@ -20,6 +20,11 @@
                 </div>
             </div>
         </div>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- <div class="col-lg-12">
         @if(Session::has('success_msg'))
         <div class="alert alert-success">{{ Session::get('success_msg') }}</div>
@@ -27,15 +32,27 @@
 
         <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">List Comment By Idea : {{ $ideas->title  }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">List Comment By Idea : {{ $ideas->title  }}</h6><br>
+                
+            </div>
+            <div class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <b>Idea content:</b> {{ $ideas->content }} <br/><br/>
+                    <b>Attachments:</b> ({{ $ideas->attachments->count() }}) <br/><br/>
+                    @foreach ($ideas->attachments as $attachment)
+                    <b>Attchment File: </b><a href="{{ asset($attachment->direction) }}">{{ $attachment->name }}</a>
+                    <br>
+                @endforeach
+            </li>
             </div>
             <div class="card-body">
-                <table id="users-table" class="table table-condensed col-12">
+                <table id="users-table" class="table table-responsive" style="width:100%">
                     <thead class="thread-light">
                         <tr>
-                            <th scope="col">Content</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Idea</th>
+                            <th class="col-1">Content</th>
+                            <th class="col-1">User</th>
+                            <th class="col-1">Idea</th>
+                            <th class="col-1">Action</th>
                         </tr>
                     </thead>
                 </table>
@@ -73,6 +90,10 @@
                     {
                         data: 'idea',
                     },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
                 ]
             });
             $('#users-table_wrapper').removeClass('form-inline');

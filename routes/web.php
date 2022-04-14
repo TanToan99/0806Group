@@ -119,12 +119,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/dt-row-data',[IdeasController::class,'getDtRowData']);
             Route::get('/listIdea/{id}',[IdeasController::class,'listIdeaByMission'])->name('admin.ideas.listIdea.index');
             Route::get('/listIdea/{id}/dt-row-data',[IdeasController::class,'getDtRowDataByMission']);
+            Route::delete('/delete/{id}',[IdeasController::class,'delete'])->name('admin.ideas.delete');
         });
 
         //Comment Admin
         Route::group(['prefix' => 'comments', 'middleware' => 'role:admin,manager'],function(){
             Route::get('/listComment/{id}',[ComentController::class,'listCommentByIdea'])->name('admin.comments.listComment.index');
             Route::get('/listComment/{id}/dt-row-data',[ComentController::class,'getDtRowDataByIdea']);
+            Route::delete('/delete/{id}',[ComentController::class,'delete'])->name('admin.comments.delete');
         });
 
         //Mission

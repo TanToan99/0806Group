@@ -21,6 +21,12 @@ class ComentController extends Controller
             ]
         );
     }
+    public function delete($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comment deleted!');
+    }
 
     public function getDtRowDataByIdea($id, Request $request)
     {
@@ -35,6 +41,21 @@ class ComentController extends Controller
             ->editColumn('idea', function ($data) {
                 return $data->idea->title;
             })
+            ->editColumn('action', function($data){
+                return '
+                <form method="POST" action="' . route('admin.comments.delete', $data->id) . '" accept-charset="UTF-8" style="display:inline-block">
+                ' . method_field('DELETE') .
+                    '' . csrf_field() .
+                    '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this comment ?\')"><i class="fa-solid fa-trash"></i></button>
+                </form>
+                ';
+            })
+            ->rawColumns(['action', 'name'])
+            ->setRowAttr([
+                'data-row' => function ($data) {
+                    return $data->id;
+                }
+            ])
             ->make(true);
     }
 }

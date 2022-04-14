@@ -107,9 +107,13 @@
                     <div class="form-group">
                         <label for="department">Department:</label>
                         <select class="form-control" name="department_id" id="department">
+                            <option value="">None</option>
+                            {{-- @if(auth()->user()->hasRole(Role::ROLE_STAFF)||auth()->user()->hasRole(Role::ROLE_QA_Coordinator)) --}}
+                            {{-- @else --}}
                             @foreach ($department as $dpm)
                             <option value="{{ $dpm->id }}">{{ $dpm->name }}</option>
                             @endforeach
+                            {{-- @endif --}}
                         </select>
                     </div>
                 </div>    
