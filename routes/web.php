@@ -143,15 +143,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/missions/semester/{id}/dt-row-data', [MissionController::class, 'getDtRowDataBySemester']);
         
     });
-<<<<<<< Updated upstream
-    Route::get('/zip', [ZipController::class,'zipFile']);
-=======
     Route::get('/zip',[ZipController::class,'zipFile'])->name('create.zip');
     // Route::post('/zip', [ZipController::class,'zipFile'])->name('create.zip');
     Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
     Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
-   
-
->>>>>>> Stashed changes
-   
 });
