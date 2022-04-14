@@ -22,4 +22,5 @@ class Semester extends Model
     {
         return $this->hasMany(Mission::class);
     }
+    
 }

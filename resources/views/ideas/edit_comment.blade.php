@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('comments.edit', $comment->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('ideas.comments.edit', $comment->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="comment-content" class="col-form-label">Content:</label>

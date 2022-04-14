@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="https//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
 <!-- Default theme -->
 <link rel="stylesheet" href="https//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+<title>Department</title>
+<link rel="icon" href="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/favicon/1640228920/favicon.ico">
+
 @endsection
 
 @section('content')
@@ -60,6 +63,7 @@
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
+            
             ajax: '{{url('/admin/department/dt-row-data')}}',
             columns: [{
                     data: 'name',

@@ -24,6 +24,11 @@
             </form>
             @endif
         </h4>
+        
+        <small class="text-muted">
+            Post by: {{ auth()->user()->hasRole('staff')? 'Anonymous': $idea->user->name }} -
+            {{ $idea->created_at->diffForHumans() }}
+        </small>
         <p>{{ $idea->content }}</p>
         <h1 class="comments-title">Attachments ({{ $idea->attachments->count() }})</h1>
         @foreach ($idea->attachments as $attachment)
@@ -38,7 +43,7 @@
         <h1 class="comments-title">Comments</h1>
         <div class="be-comment mb-4">
             @if(now() < $current_semester_end_day)
-            <form action="{{ url('/ideas/add-comment/' . $idea->id) }}" method="POST">
+            <form action="{{ route('ideas.comments.add', $idea->id) }}" method="POST">
                 @csrf
                 <div class="input-group">
                     <input type="text" class="form-control rounded-corner" name="content" placeholder="Write a comment...">
@@ -48,7 +53,7 @@
                 </div>
             </form>
             @else
-            <form action="{{ url('/ideas/add-comment/' . $idea->id) }}" method="POST">
+            <form action="{{ route('ideas.comments.add',$idea->id) }}" method="POST">
                 @csrf
                 <div class="input-group">
                     <input type="text" class="form-control rounded-corner" name="content" placeholder="Comment is unvailable" disabled>
@@ -72,7 +77,7 @@
                     {{ $comment->created_at->diffForHumans() }}
                     @if($comment->user_id === auth()->user()->id)
                     @include('ideas.edit_comment')
-                    <form method="post" action="{{route('comments.delete', $comment->id)}}" style="display: inline;">
+                    <form method="post" action="{{route('ideas.comments.delete', $comment->id)}}" style="display: inline;">
                         @method('delete')
                         @csrf
                         <button type="submit" style="border: none; padding: 0; background: none;">

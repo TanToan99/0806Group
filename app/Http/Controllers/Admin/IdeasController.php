@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Models\User;
@@ -62,6 +63,7 @@ class IdeasController extends Controller
             ]
         );
     }
+
     public function getDtRowDataByMission($id, Request $request)
     {
         $missions = Idea::where('mission_id', $id)->get();

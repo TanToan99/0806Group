@@ -84,10 +84,11 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
+                    <div class="image" style="padding-top: 10px;">
                         <img class="img-account-profile rounded-circle mb-2"
                             src="{{ auth()->user()->avatar == null? asset('/images/avatar.png'): asset('/storage/images/' . Auth::user()->avatar) }}"
-                            alt="{{ asset('public/images/avatar.png') }}" loading="lazy">
+                            alt="{{ asset('public/images/avatar.png') }}" loading="lazy"
+                            style="object-fit: cover;">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>

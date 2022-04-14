@@ -72,11 +72,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/attachment/delete/{id}', [IdeaController::class, 'deleteAttachment'])->name('ideas.attachment.delete');
         Route::get('/search', [IdeaController::class, 'index']);
 
-        Route::get('add-comment/{id}', [CommentController::class, 'addComment']);
-        Route::post('add-comment/{id}', [CommentController::class, 'addComment'])->name('comments.add');
-        Route::get('edit-comment/{id}', [CommentController::class, 'editComment']);
-        Route::post('edit-comment/{id}', [CommentController::class, 'editComment'])->name('comments.edit');
-        Route::delete('delete-comment/{id}', [CommentController::class, 'deleteComment'])->name('comments.delete');
+        Route::get('{id}/comment/add', [CommentController::class, 'addComment']);
+        Route::post('{id}/comment/add', [CommentController::class, 'addComment'])->name('ideas.comments.add');
+        Route::get('{id}/comment/edit', [CommentController::class, 'editComment']);
+        Route::post('{id}/comment/edit', [CommentController::class, 'editComment'])->name('ideas.comments.edit');
+        Route::delete('{id}/comment/delete', [CommentController::class, 'deleteComment'])->name('ideas.comments.delete');
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => 'role:admin,manager,coordinator'], function () {

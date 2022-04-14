@@ -15,7 +15,7 @@
 
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-right" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/login-logo.png') }}"
                     alt="..." /></a>
@@ -25,7 +25,7 @@
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 text-right list-inline" >
                     <li class="nav-item my-3"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item my-3"><a class="nav-link" href="{{ route('about') }}">About</a></li>
                     @if(!auth()->user())

@@ -29,6 +29,13 @@
                                 <input class="form-control" id="role" type="text" value="{{ $user->role->name }}"
                                     readonly>
                             </div>
+                            @if (auth()->user()->hasRole('staff') || auth()->user()->hasRole('coordinator'))
+                                <div class="mb-3">
+                                    <label class="small mb-1 fw-bold" for="role">Position:</label>
+                                    <input class="form-control" id="role" type="text" value="{{ $user->department->name }}"
+                                        readonly>
+                                </div>
+                            @endif
                             <div class="mb-3">
                                 <label class="small mb-1 fw-bold" for="new-phone-number">Phone number:</label>
                                 <input class="form-control"

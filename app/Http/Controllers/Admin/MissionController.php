@@ -187,7 +187,9 @@ class MissionController extends Controller
             ->editColumn('semester', function ($data) {
                 return $data->semester->name;
             })
-
+            ->editColumn('ideas', function ($data) {
+                return $data->ideas->count();
+            })
             ->editColumn('action', function ($data) {
                 return '
                 <a class="btn btn-warning btn-sm rounded-pill" href="' . route("admin.account.update", $data->id) . '"><i class="fa-solid fa-pen-to-square"></i></a>

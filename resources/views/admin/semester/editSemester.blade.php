@@ -1,4 +1,8 @@
 @extends('layouts.admin')
+@section('custom-css')
+    <title>Edit Semester</title>
+    <link rel="icon" href="https://cms.greenwich.edu.vn/pluginfile.php/1/theme_adaptable/favicon/1640228920/favicon.ico">
+@endsection
 @section('content')
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -76,18 +80,14 @@
 
 <body>
     <!-- content header -->
+    <div class="container">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Welcome to Admin!</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.semester.index') }}">Semester</a></li>
                         <li class="breadcrumb-item active">Update Semester</li>
                     </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -98,7 +98,7 @@
         <form action="/admin/semester/update/{{ $itemSemester->id }}" method="post">
             @csrf
             <h3>Edit Semester</h3>
-            <div class="row">
+            {{-- <div class="row"> --}}
                 <div class="col-lg-10">
                     <div class="form-group @error('name') is-invalid @enderror">
                         <input type="text" name="name" placeholder="Name Semester" class="form-control" value="{{ $itemSemester->name }}">
@@ -128,7 +128,7 @@
                         <button type="submit" name="btnSubmit" class="btn btn-outline-primary rounded-pill" data-mdb-ripple-color="dark">Update Semester</button>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
         </form>
     </div>
 </body>

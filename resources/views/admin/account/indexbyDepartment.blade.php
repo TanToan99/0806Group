@@ -2,9 +2,9 @@
 
 @section('custom-css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /><!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
 @endsection
 
 @section('content')
@@ -30,13 +30,13 @@
                 <h6 class="m-0 font-weight-bold text-primary">List Account By Department : {{ $user->name  }}</h6>
             </div>
             <div class="card-body">
-                <table id="users-table" class="table table-condensed col-12">
+                <table id="users-table" class="table table-responsive" style="width:100%">
                     <thead class="thread-light">
-                        <tr>
-                            <th scope="col">User Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Department</th>
+                        <tr class="col">
+                            <th class="col-1">User Name</th>
+                            <th class="col-1">Email</th>
+                            <th class="col-1">Role</th>
+                            <th class="col-1">Department</th>
                         </tr>
                     </thead>
                 </table>
