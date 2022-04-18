@@ -8,6 +8,7 @@ use App\Models\Semester;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\UpdateSemesterRequest as UpdateSemester;
+use App\Models\Role;
 
 class SemesterController extends Controller
 {
@@ -33,17 +34,22 @@ class SemesterController extends Controller
                 return $data->missions->count();
             })
             ->editColumn('action', function ($data) {
-                if (auth()->user()->hasRole('admin')) {
-                return '
-                <a class="btn btn-warning btn-sm rounded-pill" href="'.route("admin.semester.update",$data->id).'"><i class="fa-solid fa-pen-to-square" title="Edit Semester"></i></a>
-                <form method="POST" action="' . route('admin.semester.delete', $data->id) . '" accept-charset="UTF-8" style="display:inline-block">
-                ' . method_field('DELETE') .
-                    '' . csrf_field() .
-                    '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this department ?\')"><i class="fa-solid fa-trash" title="Delete Semester"></i></button>
-                </form>
-                ';
+                $res ="";
+                if (auth()->user()->hasRole(Role::ROLE_ADMIN)) {
+                    $res .='
+                    <a class="btn btn-warning btn-sm rounded-pill" href="'.route("admin.semester.update",$data->id).'"><i class="fa-solid fa-pen-to-square" title="Edit Semester"></i></a>
+                    <form method="POST" action="' . route('admin.semester.delete', $data->id) . '" accept-charset="UTF-8" style="display:inline-block">
+                    ' . method_field('DELETE') .
+                        '' . csrf_field() .
+                        '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this department ?\')"><i class="fa-solid fa-trash" title="Delete Semester"></i></button>
+                    </form>
+                    ';
                 }
-                return '';
+                if (auth()->user()->hasRole(Role::ROLE_ADMIN) || auth()->user()->hasRole(Role::ROLE_QA_Manager)) {
+                    $res .= ' <a class="btn btn-danger btn-sm rounded-pill" href="' . route("admin.semester.zip",$data->id) . '">ZIP</a>'; 
+                    $res .= ' <a class="btn btn-danger btn-sm rounded-pill" href="' . route("admin.semester.csv",$data->id) . '">CSV</a>';
+                }
+                return $res;
             })
             ->rawColumns(['action','name'])
             ->setRowAttr([

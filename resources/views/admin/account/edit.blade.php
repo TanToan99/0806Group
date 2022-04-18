@@ -131,10 +131,17 @@
         <div class="form-icon">
           <span><i class="icon icon-user"></i></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" @error('name') is-invalid @enderror">
           <label for="role">User Name:</label>
-          <input type="text" class="form-control item" name="name" id="name" placeholder="Full Name" value="{{$user-> name}}">
+          <input type="text" class="form-control item" name="name" id="name" placeholder="Full Name" value="{{$user -> name}}">
         </div>
+        @if ($errors->has('name'))
+          <span>
+            @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </span>
+        @endif
         <div class="form-group">
         </div>
         <div class="form-group">

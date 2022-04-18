@@ -14,6 +14,7 @@ use App\Jobs\SendEmailCreateAccount;
 use Illuminate\Support\Str;
 use Session;
 use App\Http\Requests\AccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
 use DB;
 
 class AccountController extends Controller
@@ -74,6 +75,13 @@ class AccountController extends Controller
                         '<button type="submit" class="btn btn-danger btn-sm rounded-pill" onclick="return confirm(\'Do you want to delete this account ?\')"><i class="fa-solid fa-trash" title="Delete Account"></i></button>
                         </form>';
                 }
+                if (auth()->user()->hasRole(Role::ROLE_QA_Coordinator)) {
+                    $res .= ' <a class="btn btn-primary btn-sm rounded-pill" href="' . route('send.email', $data->id) . '"><i class="fa-solid fa-envelope" title="Send Mail"></i></a>';
+                }
+                // if (auth()->user()->hasRole(Role::ROLE_QA_Coordinator)) {
+                //     $res .= ' <a class="btn btn-danger btn-sm rounded-pill" href="' . route("zip-download") . '"><i class="fas fa-file-download
+                //     " title="Download Attachment"></i></a>';
+                // }
                 return $res;
             })
             ->rawColumns(['action'])
@@ -84,13 +92,35 @@ class AccountController extends Controller
             ])
             ->make(true);
     }
+    public function sendMail()
+    {
+        $details = [
+            'title' => 'Email to Multiple Users',
+            'body' => 'This is sample content we have added for this test mail sending to multiple users.'
+        ];
+    
+        // Email to users
+        $users = [
+            "phungdat020501@gmail.com",
+            "thedosu2001@gmail.com"
+        ];
+    
+        foreach ($users as $user) { // sending mail to users.
+    
+            Mail::to($user)->send(new \App\Mail\MyTestMail($details));
+        }
+    
+        dd("Email is Sent, please check your inbox.");
+        return redirect('admin/account');
+    }
+
 
     public function delete($id)
     {
         $data = User::findOrFail($id);
         $data->delete();
         Session::flash('success_msg', 'Account deleted successfully!');
-        return redirect()->back()->with('flash_message', 'User deleted!');
+        return redirect()->back()->with('success', 'User deleted!');
     }
 
     public function create(AccountRequest $request)
@@ -106,6 +136,7 @@ class AccountController extends Controller
             'name' => $name,
             'email' => $email,
             'role_id' => $role_id,
+            'is_lock' => 1,
             'department_id' => $department_id,
             'password' => Hash::make($password),
             'remember_token' => $token
@@ -122,7 +153,7 @@ class AccountController extends Controller
         return view('admin.account.edit', compact('user', 'role_id', 'departments'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateAccountRequest $request, $id)
     {
         $user = User::find($id);
         $name = $request->name;
@@ -134,7 +165,7 @@ class AccountController extends Controller
             'department_id' => $department_id
         ]);
         $user->save();
-        return redirect('admin/account');
+        return redirect('admin/account') -> with('success','Updated account successfully');
     }
 
     public function listAccountByDepartment($id)

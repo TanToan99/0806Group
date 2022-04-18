@@ -99,7 +99,7 @@
             </div>
         </div>
     </section>
-    @if (!auth()->user()->hasRole('coordinator'))
+    @if (auth()->user()->hasRole('admin'))
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mt-3">
@@ -121,7 +121,7 @@
 
 @section('custom-js')
 
-    @if (!auth()->user()->hasRole('coordinator'))
+    @if (auth()->user()->hasRole('admin'))
         <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"
                 integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -182,12 +182,7 @@
                         // Change type to "doughnut", "line", "splineArea", etc.
                         type: "column",
                         dataPoints: [
-                            @foreach ($semesters as $semester)
-                                {
-                                label: "{{ $semester->name }}",
-                                y: {{ $semester->ideas->count() }}
-                                },
-                            @endforeach
+                           
                         ]
                     }]
                 });

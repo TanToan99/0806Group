@@ -74,7 +74,7 @@ class MissionController extends Controller
         if (!$semester)
             abort(404);
         if(strtotime($request->end_at) > strtotime($semester->end_day))
-            return redirect()->back()->with('success', 'Date can not out of semester');
+            return redirect()->back()->with('danger', 'Date can not out of semester');
         if (Mission::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -117,7 +117,7 @@ class MissionController extends Controller
     {
         $data = Mission::find($id);
         if ($data->ideas->count() != 0)
-            return redirect()->back()->with('success', 'Mission cannot delete because it belongs to an Ideas!');
+            return redirect()->back()->with('danger', 'Mission cannot delete because it belongs to an Ideas!');
         $data->delete();
         return redirect()->back()->with('success', 'Mission deleted!');
     }

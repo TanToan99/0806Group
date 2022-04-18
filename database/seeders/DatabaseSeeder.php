@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone_number' => 123456789,
+            'phone_number' => "",
             'role_id' => Role::where('name',Role::ROLE_ADMIN)->first()->id
         ]);
         User::create([
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone_number' => 123456789,
+            'phone_number' => "",
             'role_id' => Role::where('name',Role::ROLE_QA_Manager)->first()->id,
         ]);
         
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone_number' => 123456789,
+            'phone_number' => "",
             'role_id' => Role::where('name',Role::ROLE_QA_Coordinator)->first()->id,
             'department_id' => Department::where('name',Department::SUPPORT)->first()->id,
         ]);
@@ -62,11 +62,32 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone_number' => 123456789,
+            'phone_number' => "",
             'role_id' => Role::where('name',Role::ROLE_QA_Coordinator)->first()->id,
             'department_id' => Department::where('name',Department::ACADEMIC)->first()->id,
         ]);
         //seed staff
+        User::create([
+            'name' => 'Staff Academic',
+            'email' => 'staffacademic@0806.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'phone_number' => "",
+            'role_id' => Role::where('name',Role::ROLE_STAFF)->first()->id,
+            'department_id' => Department::where('name',Department::ACADEMIC)->first()->id,
+        ]);
+        User::create([
+            'name' => 'Staff Academic',
+            'email' => 'staffacademic@0806.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'phone_number' => "",
+            'role_id' => Role::where('name',Role::ROLE_STAFF)->first()->id,
+            'department_id' => Department::where('name',Department::ACADEMIC)->first()->id,
+        ]);
+        //seed default staff
         User::factory(10)->create();
     }
 }

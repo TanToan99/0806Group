@@ -37,7 +37,7 @@
 
                         @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') || auth()->user()->hasRole('coordinator'))
                             <li class="nav-item my-3"><a class="nav-link"
-                                    href="{{ route('admin.index') }}">Admin</a></li>
+                                    href="{{ route('admin.index') }}">Dashboard</a></li>
                         @endif
                         <li class="nav-item dropdown my-1">
                             <button class="btn" type="button" id="dropdownMenuButton2"

@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Http\Requests\PhoneChangeRequest;
 use App\Http\Requests\PasswordChangeRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Export\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -18,6 +20,10 @@ class UserController extends Controller
      *
      * @return void
      */
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
     public function __construct()
     {
         $this->middleware('auth');
